@@ -13,11 +13,8 @@ import { ReviewModule } from './review/review.module'
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      name: 'datab',
       type: 'sqlite',
-      database: 'datab.sqlite3',
-      synchronize: true,
-      dropSchema: true,
+      database: './datab.sqlite3',
       entities: [
         AuthorEntity,
         BookEntity, 

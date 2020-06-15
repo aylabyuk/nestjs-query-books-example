@@ -7,7 +7,7 @@ import {
 } from 'typeorm'
 import { BookEntity } from '../book/book.entity'
 
-@Entity()
+@Entity({ name: 'review' })
 export class ReviewEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number

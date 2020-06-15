@@ -12,7 +12,7 @@ import { AuthorEntity } from '../author/author.entity'
 import { PublisherEntity } from '../publisher/publisher.entity'
 import { ReviewEntity } from '../review/review.entity'
 
-@Entity()
+@Entity({ name: 'book' })
 export class BookEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number

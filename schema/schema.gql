@@ -1,0 +1,655 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Book {
+  id: Int!
+  isPublished: Boolean!
+  title: String!
+  summary: String!
+  publishedDate: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  author: Author!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Author {
+  id: Int!
+  email: String!
+  firstName: String!
+  lastName: String!
+  phone: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  books(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: BookFilter = {}
+
+    """Specify to sort results."""
+    sorting: [BookSort!] = []
+  ): BookConnection!
+}
+
+input CursorPaging {
+  """Paginate before opaque cursor"""
+  before: ConnectionCursor
+
+  """Paginate after opaque cursor"""
+  after: ConnectionCursor
+
+  """Paginate first"""
+  first: Int
+
+  """Paginate last"""
+  last: Int
+}
+
+"""Cursor for paging through collections"""
+scalar ConnectionCursor
+
+input BookFilter {
+  and: [BookFilter!]
+  or: [BookFilter!]
+  id: IntFieldComparison
+  isPublished: BooleanFieldComparison
+  title: StringFieldComparison
+  summary: StringFieldComparison
+  publishedDate: StringFieldComparison
+}
+
+input IntFieldComparison {
+  is: Boolean
+  isNot: Boolean
+  eq: Int
+  neq: Int
+  gt: Int
+  gte: Int
+  lt: Int
+  lte: Int
+  in: [Int!]
+  notIn: [Int!]
+  between: IntFieldComparisonBetween
+  notBetween: IntFieldComparisonBetween
+}
+
+input IntFieldComparisonBetween {
+  lower: Int!
+  upper: Int!
+}
+
+input BooleanFieldComparison {
+  is: Boolean
+  isNot: Boolean
+}
+
+input StringFieldComparison {
+  is: Boolean
+  isNot: Boolean
+  eq: String
+  neq: String
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  like: String
+  notLike: String
+  iLike: String
+  notILike: String
+  in: [String!]
+  notIn: [String!]
+}
+
+input BookSort {
+  field: BookSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum BookSortFields {
+  id
+  isPublished
+  title
+  summary
+  publishedDate
+}
+
+"""Sort Directions"""
+enum SortDirection {
+  ASC
+  DESC
+}
+
+"""Sort Nulls Options"""
+enum SortNulls {
+  NULLS_FIRST
+  NULLS_LAST
+}
+
+type DeleteManyResponse {
+  """The number of records deleted."""
+  deletedCount: Int!
+}
+
+type AuthorDeleteResponse {
+  id: Int
+  email: String
+  firstName: String
+  lastName: String
+  phone: String
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type UpdateManyResponse {
+  """The number of records updated."""
+  updatedCount: Int!
+}
+
+type AuthorEdge {
+  """The node containing the Author"""
+  node: Author!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type PageInfo {
+  """true if paging forward and there are more records."""
+  hasNextPage: Boolean
+
+  """true if paging backwards and there are more records."""
+  hasPreviousPage: Boolean
+
+  """The cursor of the first returned record."""
+  startCursor: ConnectionCursor
+
+  """The cursor of the last returned record."""
+  endCursor: ConnectionCursor
+}
+
+type AuthorConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [AuthorEdge!]!
+}
+
+type BookEdge {
+  """The node containing the Book"""
+  node: Book!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type BookConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [BookEdge!]!
+}
+
+type BookDeleteResponse {
+  id: Int
+  isPublished: Boolean
+  title: String
+  summary: String
+  publishedDate: String
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type Publisher {
+  id: Int!
+  name: String!
+  address: String!
+}
+
+type PublisherDeleteResponse {
+  id: Int
+  name: String
+  address: String
+}
+
+type PublisherEdge {
+  """The node containing the Publisher"""
+  node: Publisher!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type PublisherConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [PublisherEdge!]!
+}
+
+type Review {
+  id: Int!
+  title: String!
+  body: String!
+  reviewDate: String!
+  rating: Float!
+  reviewerName: String!
+}
+
+type ReviewDeleteResponse {
+  id: Int
+  title: String
+  body: String
+  reviewDate: String
+  rating: Float
+  reviewerName: String
+}
+
+type ReviewEdge {
+  """The node containing the Review"""
+  node: Review!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type ReviewConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [ReviewEdge!]!
+}
+
+type Query {
+  author(id: ID!): Author
+  authors(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: AuthorFilter = {}
+
+    """Specify to sort results."""
+    sorting: [AuthorSort!] = []
+  ): AuthorConnection!
+  book(id: ID!): Book
+  books(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: BookFilter = {}
+
+    """Specify to sort results."""
+    sorting: [BookSort!] = []
+  ): BookConnection!
+  publisher(id: ID!): Publisher
+  publishers(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: PublisherFilter = {}
+
+    """Specify to sort results."""
+    sorting: [PublisherSort!] = []
+  ): PublisherConnection!
+  review(id: ID!): Review
+  reviews(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: ReviewFilter = {}
+
+    """Specify to sort results."""
+    sorting: [ReviewSort!] = []
+  ): ReviewConnection!
+}
+
+input AuthorFilter {
+  and: [AuthorFilter!]
+  or: [AuthorFilter!]
+  id: IntFieldComparison
+  email: StringFieldComparison
+  firstName: StringFieldComparison
+  lastName: StringFieldComparison
+  phone: StringFieldComparison
+}
+
+input AuthorSort {
+  field: AuthorSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum AuthorSortFields {
+  id
+  email
+  firstName
+  lastName
+  phone
+}
+
+input PublisherFilter {
+  and: [PublisherFilter!]
+  or: [PublisherFilter!]
+  id: IntFieldComparison
+  name: StringFieldComparison
+  address: StringFieldComparison
+}
+
+input PublisherSort {
+  field: PublisherSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum PublisherSortFields {
+  id
+  name
+  address
+}
+
+input ReviewFilter {
+  and: [ReviewFilter!]
+  or: [ReviewFilter!]
+  id: IntFieldComparison
+  title: StringFieldComparison
+  body: StringFieldComparison
+  reviewDate: StringFieldComparison
+  rating: NumberFieldComparison
+  reviewerName: StringFieldComparison
+}
+
+input NumberFieldComparison {
+  is: Boolean
+  isNot: Boolean
+  eq: Float
+  neq: Float
+  gt: Float
+  gte: Float
+  lt: Float
+  lte: Float
+  in: [Float!]
+  notIn: [Float!]
+  between: NumberFieldComparisonBetween
+  notBetween: NumberFieldComparisonBetween
+}
+
+input NumberFieldComparisonBetween {
+  lower: Float!
+  upper: Float!
+}
+
+input ReviewSort {
+  field: ReviewSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum ReviewSortFields {
+  id
+  title
+  body
+  reviewDate
+  rating
+  reviewerName
+}
+
+type Mutation {
+  deleteOneAuthor(input: DeleteOneInput!): AuthorDeleteResponse!
+  deleteManyAuthors(input: DeleteManyAuthorsInput!): DeleteManyResponse!
+  updateOneAuthor(input: UpdateOneAuthorInput!): Author!
+  updateManyAuthors(input: UpdateManyAuthorsInput!): UpdateManyResponse!
+  createOneAuthor(input: CreateOneAuthorInput!): Author!
+  createManyAuthors(input: CreateManyAuthorsInput!): [Author!]!
+  removeBooksFromAuthor(input: RelationsInput!): Author!
+  addBooksToAuthor(input: RelationsInput!): Author!
+  deleteOneBook(input: DeleteOneInput!): BookDeleteResponse!
+  deleteManyBooks(input: DeleteManyBooksInput!): DeleteManyResponse!
+  updateOneBook(input: UpdateOneBookInput!): Book!
+  updateManyBooks(input: UpdateManyBooksInput!): UpdateManyResponse!
+  createOneBook(input: CreateOneBookInput!): Book!
+  createManyBooks(input: CreateManyBooksInput!): [Book!]!
+  removeAuthorFromBook(input: RelationInput!): Book!
+  setAuthorOnBook(input: RelationInput!): Book!
+  deleteOnePublisher(input: DeleteOneInput!): PublisherDeleteResponse!
+  deleteManyPublishers(input: DeleteManyPublishersInput!): DeleteManyResponse!
+  updateOnePublisher(input: UpdateOnePublisherInput!): Publisher!
+  updateManyPublishers(input: UpdateManyPublishersInput!): UpdateManyResponse!
+  createOnePublisher(input: CreateOnePublisherInput!): Publisher!
+  createManyPublishers(input: CreateManyPublishersInput!): [Publisher!]!
+  deleteOneReview(input: DeleteOneInput!): ReviewDeleteResponse!
+  deleteManyReviews(input: DeleteManyReviewsInput!): DeleteManyResponse!
+  updateOneReview(input: UpdateOneReviewInput!): Review!
+  updateManyReviews(input: UpdateManyReviewsInput!): UpdateManyResponse!
+  createOneReview(input: CreateOneReviewInput!): Review!
+  createManyReviews(input: CreateManyReviewsInput!): [Review!]!
+}
+
+input DeleteOneInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
+input DeleteManyAuthorsInput {
+  """Filter to find records to delete"""
+  filter: AuthorFilter!
+}
+
+input UpdateOneAuthorInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateAuthor!
+}
+
+input UpdateAuthor {
+  id: Int
+  email: String
+  firstName: String
+  lastName: String
+  phone: String
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input UpdateManyAuthorsInput {
+  """Filter used to find fields to update"""
+  filter: AuthorFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateAuthor!
+}
+
+input CreateOneAuthorInput {
+  """The record to create"""
+  author: CreateAuthor!
+}
+
+input CreateAuthor {
+  id: Int
+  email: String
+  firstName: String
+  lastName: String
+  phone: String
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input CreateManyAuthorsInput {
+  """Array of records to create"""
+  authors: [CreateAuthor!]!
+}
+
+input RelationsInput {
+  """The id of the record."""
+  id: ID!
+
+  """The ids of the relations."""
+  relationIds: [ID!]!
+}
+
+input DeleteManyBooksInput {
+  """Filter to find records to delete"""
+  filter: BookFilter!
+}
+
+input UpdateOneBookInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateBook!
+}
+
+input UpdateBook {
+  id: Int
+  isPublished: Boolean
+  title: String
+  summary: String
+  publishedDate: String
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input UpdateManyBooksInput {
+  """Filter used to find fields to update"""
+  filter: BookFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateBook!
+}
+
+input CreateOneBookInput {
+  """The record to create"""
+  book: CreateBook!
+}
+
+input CreateBook {
+  id: Int
+  isPublished: Boolean
+  title: String
+  summary: String
+  publishedDate: String
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input CreateManyBooksInput {
+  """Array of records to create"""
+  books: [CreateBook!]!
+}
+
+input RelationInput {
+  """The id of the record."""
+  id: ID!
+
+  """The id of relation."""
+  relationId: ID!
+}
+
+input DeleteManyPublishersInput {
+  """Filter to find records to delete"""
+  filter: PublisherFilter!
+}
+
+input UpdateOnePublisherInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdatePublisher!
+}
+
+input UpdatePublisher {
+  id: Int
+  name: String
+  address: String
+}
+
+input UpdateManyPublishersInput {
+  """Filter used to find fields to update"""
+  filter: PublisherFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdatePublisher!
+}
+
+input CreateOnePublisherInput {
+  """The record to create"""
+  publisher: CreatePublisher!
+}
+
+input CreatePublisher {
+  id: Int
+  name: String
+  address: String
+}
+
+input CreateManyPublishersInput {
+  """Array of records to create"""
+  publishers: [CreatePublisher!]!
+}
+
+input DeleteManyReviewsInput {
+  """Filter to find records to delete"""
+  filter: ReviewFilter!
+}
+
+input UpdateOneReviewInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateReview!
+}
+
+input UpdateReview {
+  id: Int
+  title: String
+  body: String
+  reviewDate: String
+  rating: Float
+  reviewerName: String
+}
+
+input UpdateManyReviewsInput {
+  """Filter used to find fields to update"""
+  filter: ReviewFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateReview!
+}
+
+input CreateOneReviewInput {
+  """The record to create"""
+  review: CreateReview!
+}
+
+input CreateReview {
+  id: Int
+  title: String
+  body: String
+  reviewDate: String
+  rating: Float
+  reviewerName: String
+}
+
+input CreateManyReviewsInput {
+  """Array of records to create"""
+  reviews: [CreateReview!]!
+}
