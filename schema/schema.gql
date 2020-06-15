@@ -272,7 +272,6 @@ type ReviewConnection {
 }
 
 type Query {
-  author(id: ID!): Author
   authors(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
@@ -283,6 +282,7 @@ type Query {
     """Specify to sort results."""
     sorting: [AuthorSort!] = []
   ): AuthorConnection!
+  author(id: Int!): Author!
   book(id: ID!): Book
   books(
     """Limit or page results."""
