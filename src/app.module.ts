@@ -5,6 +5,10 @@ import { AuthorEntity } from './author/author.entity'
 import { BookEntity } from './book/book.entity'
 import { PublisherEntity } from './publisher/publisher.entity'
 import { ReviewEntity } from './review/review.entity'
+import { AuthorModule } from './author/author.module'
+import { BookModule } from './book/book.module'
+import { PublisherModule } from './publisher/publisher.module'
+import { ReviewModule } from './review/review.module'
 
 @Module({
   imports: [
@@ -26,7 +30,11 @@ import { ReviewEntity } from './review/review.entity'
       debug: true,
       playground: true,
       autoSchemaFile: 'schema/schema.gql'
-    })
+    }),
+    AuthorModule,
+    BookModule,
+    PublisherModule,
+    ReviewModule
   ],
 })
 export class AppModule {}
