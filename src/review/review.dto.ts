@@ -1,26 +1,24 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { BookEntity } from '../book/book.entity';
+import { ObjectType, Field, Int } from '@nestjs/graphql'
+import { BookEntity } from '../book/book.entity'
+import { FilterableField } from '@nestjs-query/query-graphql'
 
 @ObjectType()
 export class Review {
-  @Field(type => Int)
-  id!: number;
+  @FilterableField(type => Int)
+  id!: number
 
-  @Field()
-  title!: string;
+  @FilterableField()
+  title!: string
 
-  @Field()
-  body!: string;
+  @FilterableField()
+  body!: string
 
-  @Field(type => String)
-  reviewDate!: Date;
+  @FilterableField(type => String)
+  reviewDate!: Date
 
-  @Field()
-  rating!: number;
+  @FilterableField()
+  rating!: number
 
-  @Field()
-  reviewerName!: string;
-
-  @Field(type => BookEntity)
-  book!: BookEntity;
+  @FilterableField()
+  reviewerName!: string
 }

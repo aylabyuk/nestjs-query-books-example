@@ -1,17 +1,15 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql'
 import { BookEntity } from '../book/book.entity'
+import { FilterableField } from '@nestjs-query/query-graphql'
 
 @ObjectType()
 export class Publisher {
-  @Field(type => Int)
+  @FilterableField(type => Int)
   id!: number
 
-  @Field()
+  @FilterableField()
   name!: string
 
-  @Field()
+  @FilterableField()
   address!: string
-
-  @Field(type => [BookEntity], { nullable: true })
-  books!: BookEntity[]
 }
