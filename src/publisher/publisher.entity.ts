@@ -4,29 +4,23 @@ import {
   Entity,
   OneToMany,
   PrimaryGeneratedColumn
-} from "typeorm";
-import { ObjectType, Field, Int } from "@nestjs/graphql";
-import { Book } from "../book/book.entity";
+} from 'typeorm'
+import { BookEntity } from '../book/book.entity'
 
-@ObjectType()
 @Entity()
-export class Publisher extends BaseEntity {
-  @Field(type => Int)
+export class PublisherEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
-  id!: number;
+  id!: number
 
-  @Field()
-  @Column("varchar")
-  name!: string;
+  @Column('varchar')
+  name!: string
 
-  @Field()
-  @Column("varchar")
-  address!: string;
+  @Column('varchar')
+  address!: string
 
-  @Field(type => [Book], { nullable: true })
   @OneToMany(
-    type => Book,
+    type => BookEntity,
     book => book.publisher
   )
-  books!: Book[];
+  books!: BookEntity[]
 }

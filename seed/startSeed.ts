@@ -1,9 +1,9 @@
 import { createConnection } from 'typeorm'
 import { Seeder } from './Seeder'
-import { Author } from '../src/author/author.entity'
-import { Book } from '../src/book/book.entity'
-import { Publisher } from '../src/publisher/publisher.entity'
-import { Review } from '../src/review/review.entity'
+import { AuthorEntity } from '../src/author/author.entity'
+import { BookEntity } from '../src/book/book.entity'
+import { PublisherEntity } from '../src/publisher/publisher.entity'
+import { ReviewEntity } from '../src/review/review.entity'
 
 export async function startSeed() {
   const connection = await createConnection({
@@ -13,10 +13,10 @@ export async function startSeed() {
     synchronize: true,
     dropSchema: true,
     entities: [
-      Author,
-      Book, 
-      Publisher,
-      Review
+      AuthorEntity,
+      BookEntity, 
+      PublisherEntity,
+      ReviewEntity
     ],
     logging: true
   })

@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common'
 import { GraphQLModule } from '@nestjs/graphql'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { Author } from './author/author.entity'
-import { Book } from './book/book.entity'
-import { Publisher } from './publisher/publisher.entity'
-import { Review } from './review/review.entity'
+import { AuthorEntity } from './author/author.entity'
+import { BookEntity } from './book/book.entity'
+import { PublisherEntity } from './publisher/publisher.entity'
+import { ReviewEntity } from './review/review.entity'
 
 @Module({
   imports: [
@@ -15,10 +15,10 @@ import { Review } from './review/review.entity'
       synchronize: true,
       dropSchema: true,
       entities: [
-        Author,
-        Book, 
-        Publisher,
-        Review
+        AuthorEntity,
+        BookEntity, 
+        PublisherEntity,
+        ReviewEntity
       ],
       logging: true
     }),

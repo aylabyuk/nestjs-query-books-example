@@ -5,40 +5,31 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn
 } from 'typeorm'
-import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { Book } from '../book/book.entity';
+import { BookEntity } from '../book/book.entity'
 
-@ObjectType()
 @Entity()
-export class Review extends BaseEntity {
-  @Field(type => Int)
+export class ReviewEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
-  id!: number;
+  id!: number
 
-  @Field()
   @Column('varchar')
-  title!: string;
+  title!: string
 
-  @Field()
   @Column('text')
-  body!: string;
+  body!: string
 
-  @Field(type => String)
   @Column('date')
-  reviewDate!: Date;
+  reviewDate!: Date
 
-  @Field()
   @Column('int')
-  rating!: number;
+  rating!: number
 
-  @Field()
   @Column('varchar')
-  reviewerName!: string;
+  reviewerName!: string
 
-  @Field(type => Book)
   @ManyToOne(
-    type => Book,
+    type => BookEntity,
     book => book.reviews
   )
-  book!: Book;
+  book!: BookEntity
 }

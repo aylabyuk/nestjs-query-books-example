@@ -7,44 +7,34 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from 'typeorm'
-import { ObjectType, Field, Int } from '@nestjs/graphql'
-import { Book } from '../book/book.entity'
+import { BookEntity } from '../book/book.entity'
 
-@ObjectType()
 @Entity()
-export class Author extends BaseEntity {
-  @Field(type => Int)
+export class AuthorEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number
 
-  @Field()
   @Column('varchar')
   email!: string
 
-  @Field()
   @Column('varchar')
   firstName!: string
 
-  @Field()
   @Column('varchar')
   lastName!: string
 
-  @Field()
   @Column('varchar', { name: 'mobile' })
   phone!: string
 
-  @Field(type => [Book])
   @OneToMany(
-    type => Book,
+    type => BookEntity,
     book => book.author
   )
-  books!: Book[]
+  books!: BookEntity[]
 
-  @Field()
   @CreateDateColumn()
   createdAt!: Date
 
-  @Field()
   @UpdateDateColumn()
   updatedAt!: Date
 }

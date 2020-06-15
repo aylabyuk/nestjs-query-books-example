@@ -8,60 +8,48 @@ import {
   OneToMany,
   Entity
 } from 'typeorm'
-import { ObjectType, Field, Int } from '@nestjs/graphql'
-import { Author } from '../author/author.entity'
-import { Publisher } from '../publisher/publisher.entity'
-import { Review } from '../review/review.entity'
+import { AuthorEntity } from '../author/author.entity'
+import { PublisherEntity } from '../publisher/publisher.entity'
+import { ReviewEntity } from '../review/review.entity'
 
-@ObjectType()
 @Entity()
-export class Book extends BaseEntity {
-  @Field(type => Int)
+export class BookEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number
 
-  @Field(type => Boolean)
   @Column('boolean')
   isPublished!: boolean
 
-  @Field()
   @Column('varchar')
   title!: string
 
-  @Field()
   @Column('text')
   summary!: string
 
-  @Field(type => String)
   @Column('date')
   publishedDate!: Date
 
-  @Field(type => Author)
   @ManyToOne(
-    type => Author,
+    type => AuthorEntity,
     author => author.books
   )
-  author!: Author
+  author!: AuthorEntity
 
-  @Field(type => Publisher)
   @ManyToOne(
-    type => Publisher,
+    type => PublisherEntity,
     publisher => publisher.books
   )
-  publisher!: Publisher
+  publisher!: PublisherEntity
 
-  @Field(type => [Review])
   @OneToMany(
-    t => Review,
+    t => ReviewEntity,
     review => review.book
   )
-  reviews!: Review[]
+  reviews!: ReviewEntity[]
 
-  @Field()
   @CreateDateColumn()
   createdAt!: Date
 
-  @Field()
   @UpdateDateColumn()
   updatedAt!: Date
 }
