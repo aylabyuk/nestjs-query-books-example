@@ -6,7 +6,7 @@ import { AuthorEntity } from './author.entity'
 
 @Resolver(() => Author)
 export class AuthorResolver extends CRUDResolver(Author, {
-  read: { one: { disabled: true } },
+  read: { one: { disabled: true } }, // disabling read one
 }) {
   constructor(
     @InjectQueryService(AuthorEntity)
@@ -26,6 +26,8 @@ export class AuthorResolver extends CRUDResolver(Author, {
       "email": "Hortense84@hotmail.com",
       "firstName": "Adonis",
       "lastName": "Boyle",
+      // the "books" part is being resolved somewhere which create a database request. 
+      // It would be awesome if there is a way to disable it and just return the nested data already defined in here.
       "books": {
         "edges": [
           {
